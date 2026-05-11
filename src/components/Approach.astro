@@ -1,0 +1,110 @@
+---
+const phases = [
+  {
+    number: "01",
+    title: "Anfrage & Kennenlernen",
+    description:
+      "Du beschreibst dein Projekt — per Formular oder E-Mail. Bei komplexeren Vorhaben klären wir alles in einem kurzen, kostenlosen Erstgespräch: Was brauchst du, was ist das Ziel, was ist das Budget?",
+    tags: ["Kostenloses Erstgespräch", "Anforderungsanalyse", "Kein Risiko"],
+  },
+  {
+    number: "02",
+    title: "Konzept & Erster Entwurf",
+    description:
+      "Ich erarbeite ein Konzept und zeige dir einen ersten Entwurf — Struktur, Design, Inhalte. Du siehst früh, wohin die Reise geht, und kannst direkt mitlenken.",
+    tags: ["Designvorschlag", "Strukturentwurf", "Schnelle Lieferung"],
+  },
+  {
+    number: "03",
+    title: "Feedback & Feinschliff",
+    description:
+      "Du gibst Feedback, ich setze es um. Wir drehen so viele Runden wie nötig, bis das Ergebnis wirklich stimmt. Deine Zufriedenheit ist der einzige Maßstab.",
+    tags: ["Revisionsrunden", "Direkte Kommunikation", "Transparenz"],
+  },
+  {
+    number: "04",
+    title: "Launch & laufende Betreuung",
+    description:
+      "Nach dem finalen Abnahme-Meeting geht dein Projekt live. Ich übernehme das Hosting und bin langfristig dabei: Änderungswünsche, Updates und Wartung sind in einer monatlichen Pauschale enthalten.",
+    tags: ["Hosting inklusive", "Monatliche Pauschale", "Laufende Wartung"],
+  },
+];
+---
+
+<section id="approach" class="py-32">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="mb-16" data-no-grid data-animate="fade-up">
+      <span class="inline-block text-xs font-semibold tracking-widest text-blue-600 uppercase mb-3">
+        Meine Arbeitsweise
+      </span>
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">Von der Idee zum fertigen Produkt</h2>
+      <p class="text-gray-500 max-w-xl leading-relaxed">
+        Klar strukturiert, transparent und immer in engem Austausch mit dir —
+        so entstehen digitale Produkte, die wirklich passen.
+      </p>
+    </div>
+
+    <!-- Phase cards: 2×2 grid -->
+    <div class="grid md:grid-cols-2 gap-6 animate-stagger">
+      {phases.map((phase) => (
+        <div
+          data-no-grid
+          data-animate="fade-up"
+          class="group relative bg-white rounded-2xl p-8 border border-gray-100
+                 hover:border-blue-100 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(37,99,235,0.10)]
+                 transition-all duration-250 ease-out"
+        >
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-50/60 to-transparent
+                      opacity-0 group-hover:opacity-100 transition-opacity duration-250 pointer-events-none" />
+
+          <!-- Number badge -->
+          <span class="relative inline-block text-xs font-bold text-blue-600 bg-blue-50
+                       px-2.5 py-1 rounded-full tracking-widest mb-5">
+            {phase.number}
+          </span>
+
+          <h3 class="relative text-lg font-semibold text-gray-900 mb-3">{phase.title}</h3>
+          <p class="relative text-sm text-gray-500 leading-relaxed mb-6">{phase.description}</p>
+
+          <!-- Tags -->
+          <div class="relative flex flex-wrap gap-2 mt-auto">
+            {phase.tags.map((tag) => (
+              <span class="text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-md
+                           group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors duration-150">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Quality note -->
+    <div
+      data-no-grid
+      data-animate="fade-up"
+      class="mt-8 rounded-2xl border border-blue-100 bg-blue-50/60 p-8
+             flex flex-col md:flex-row items-start md:items-center gap-5"
+    >
+      <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      </div>
+      <div>
+        <p class="font-semibold text-gray-900 mb-1">Handwerk, kein Massenprodukt</p>
+        <p class="text-sm text-gray-600 leading-relaxed max-w-2xl">
+          Jedes Projekt wird von mir persönlich konzipiert, entwickelt und betreut.
+          KI ist dabei ein Werkzeug — kein Ersatz für Fachwissen. Durch mein Studium und
+          meine Berufserfahrung weiß ich genau, wie ich KI sinnvoll einsetze, um
+          <span class="font-medium text-gray-900">schneller bessere Ergebnisse</span> zu liefern,
+          ohne dabei auf Qualität zu verzichten.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>

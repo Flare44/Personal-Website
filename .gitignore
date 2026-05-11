@@ -1,0 +1,28 @@
+# build output
+dist/
+.output/
+
+# astro generated
+.astro/
+
+# local tool settings
+.claude/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+
+# environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/

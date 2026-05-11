@@ -1,0 +1,151 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout
+  title="Impressum — Moritz Gilges"
+  description="Impressum und rechtliche Angaben gemäß § 5 TMG"
+>
+  <Nav />
+  <main class="bg-white min-h-screen">
+    <div class="max-w-3xl mx-auto px-6 pt-32 pb-24">
+
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600
+               transition-colors duration-150 mb-10 group"
+      >
+        <svg
+          class="w-4 h-4 transition-transform duration-150 group-hover:-translate-x-0.5"
+          fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 5l-7 7 7 7" />
+        </svg>
+        Zurück zur Startseite
+      </a>
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Impressum</h1>
+      <p class="text-sm text-gray-400 mb-12">Angaben gemäß § 5 TMG</p>
+
+      <!-- Anbieter -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">Anbieter</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Moritz Gilges<br />
+          Am Windpark 64<br />
+          41515 Grevenbroich<br />
+          Deutschland
+        </p>
+      </section>
+
+      <!-- Kontakt -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">Kontakt</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Telefon: <a href="tel:+4901795102898" class="text-blue-600 hover:underline">0179 5102898</a><br />
+          E-Mail: <a href="mailto:moritz_gilges@web.de" class="text-blue-600 hover:underline">moritz_gilges@web.de</a>
+        </p>
+      </section>
+
+      <!-- Steuerliche Angaben -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">Steuerliche Angaben</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Steuernummer: <span class="text-gray-400 italic">[wird nachgetragen]</span>
+        </p>
+        <p class="text-sm text-gray-500 mt-3 leading-relaxed">
+          Gemäß § 19 UStG wird keine Umsatzsteuer erhoben (Kleinunternehmerregelung).
+        </p>
+      </section>
+
+      <!-- Berufsbezeichnung -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">Berufsbezeichnung</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Freiberuflicher Softwareentwickler &amp; Webentwickler<br />
+          (Freiberufliche Tätigkeit gemäß § 18 Abs. 1 Nr. 1 EStG)
+        </p>
+      </section>
+
+      <!-- Verantwortlich für den Inhalt -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          Verantwortlich für den Inhalt nach § 55 Abs. 2 MStV
+        </h2>
+        <p class="text-gray-700 leading-relaxed">
+          Moritz Gilges<br />
+          Am Windpark 64<br />
+          41515 Grevenbroich
+        </p>
+      </section>
+
+      <hr class="border-gray-100 my-12" />
+
+      <!-- Haftungsausschluss -->
+      <section class="mb-10">
+        <h2 class="text-lg font-semibold text-gray-900 mb-6">Haftungsausschluss</h2>
+
+        <h3 class="font-medium text-gray-900 mb-2">Haftung für Inhalte</h3>
+        <p class="text-sm text-gray-500 leading-relaxed mb-6">
+          Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den
+          allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG bin ich als Diensteanbieter jedoch nicht
+          verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen
+          zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder
+          Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.
+          Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten
+          Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werde ich
+          diese Inhalte umgehend entfernen.
+        </p>
+
+        <h3 class="font-medium text-gray-900 mb-2">Haftung für Links</h3>
+        <p class="text-sm text-gray-500 leading-relaxed mb-6">
+          Mein Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe.
+          Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der
+          verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+          Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft.
+          Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente
+          inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer
+          Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werde ich
+          derartige Links umgehend entfernen.
+        </p>
+      </section>
+
+      <!-- Urheberrecht -->
+      <section class="mb-10">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Urheberrecht</h2>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Die durch mich erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen
+          Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung
+          außerhalb der Grenzen des Urheberrechts bedürfen meiner schriftlichen Zustimmung.
+          Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.
+          Soweit die Inhalte auf dieser Seite nicht von mir erstellt wurden, werden die Urheberrechte
+          Dritter beachtet. Solltest du trotzdem auf eine Urheberrechtsverletzung aufmerksam werden,
+          bitte ich um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werde
+          ich derartige Inhalte umgehend entfernen.
+        </p>
+      </section>
+
+      <!-- Streitschlichtung -->
+      <section>
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Streitschlichtung</h2>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+          <a
+            href="https://ec.europa.eu/consumers/odr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:underline"
+          >
+            https://ec.europa.eu/consumers/odr/
+          </a>.<br /><br />
+          Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+          Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+      </section>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,95 @@
+---
+const projects = [
+  {
+    title: "Projektname",
+    description:
+      "Kurze Beschreibung des Projekts, welches Problem es löst und welche Technologien eingesetzt wurden.",
+    tags: ["Python", "AI", "API"],
+    link: "#",
+    status: "Live",
+  },
+  {
+    title: "Projektname",
+    description:
+      "Kurze Beschreibung des Projekts, welches Problem es löst und welche Technologien eingesetzt wurden.",
+    tags: ["Node.js", "TypeScript", "GraphQL"],
+    link: "#",
+    status: "Live",
+  },
+  {
+    title: "Projektname",
+    description:
+      "Kurze Beschreibung des Projekts, welches Problem es löst und welche Technologien eingesetzt wurden.",
+    tags: ["LLM", "RAG", "Automation"],
+    link: "#",
+    status: "In Arbeit",
+  },
+];
+---
+
+<section id="projects" class="py-32">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-14" data-no-grid data-animate="fade-up">
+      <span class="inline-block text-xs font-semibold tracking-widest text-blue-600 uppercase mb-3">
+        Ausgewählte Arbeiten
+      </span>
+      <h2 class="text-4xl font-bold text-gray-900">Projekte</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-stagger">
+      {projects.map((project) => (
+        <article
+          data-no-grid
+          data-animate="fade-up"
+          class="group relative border border-gray-200 rounded-2xl p-6
+                 hover:border-blue-200 hover:-translate-y-1.5
+                 hover:shadow-[0_20px_40px_-12px_rgba(37,99,235,0.18)]
+                 active:translate-y-0 active:scale-[0.99]
+                 transition-all duration-200 ease-out cursor-pointer bg-white"
+        >
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-50/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+
+          <div class="relative flex items-start justify-between mb-4">
+            <span
+              class={`text-xs font-semibold px-2 py-1 rounded-full ${
+                project.status === "Live"
+                  ? "bg-green-50 text-green-700"
+                  : "bg-amber-50 text-amber-700"
+              }`}
+            >
+              {project.status}
+            </span>
+            <a
+              href={project.link}
+              class="text-gray-400 hover:text-blue-600 transition-colors"
+              aria-label={`Projekt ansehen: ${project.title}`}
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
+          </div>
+          <h3 class="relative font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-150">
+            {project.title}
+          </h3>
+          <p class="relative text-sm text-gray-500 leading-relaxed mb-4">
+            {project.description}
+          </p>
+          <div class="relative flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-md
+                           group-hover:bg-blue-50 group-hover:text-blue-700 transition-colors duration-150">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

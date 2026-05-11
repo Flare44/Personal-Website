@@ -1,0 +1,337 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Moritz Gilges — Developer & AI Specialist",
+  description =
+    "Portfolio of Moritz Gilges. Software developer, AI enthusiast, and freelance consultant helping small businesses grow with custom websites and AI services.",
+} = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Moritz Gilges",
+  jobTitle: "Software Developer & AI Specialist",
+  email: "moritz_gilges@web.de",
+  url: "https://moritzgilges.dev",
+  sameAs: ["https://www.linkedin.com/in/moritzgilges-682a99279"],
+  knowsAbout: [
+    "Software Development",
+    "Artificial Intelligence",
+    "Web Development",
+    "Machine Learning",
+    "Business Automation",
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://moritzgilges.dev" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-white text-gray-900 font-sans antialiased">
+    <!-- Soft white fade behind the transparent nav for readability -->
+    <div
+      aria-hidden="true"
+      style="position:fixed;top:0;left:0;right:0;height:72px;
+             background:linear-gradient(to bottom,rgba(255,255,255,0.88) 0%,transparent 100%);
+             pointer-events:none;z-index:49;"
+    ></div>
+
+    <slot />
+  </body>
+</html>
+
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  CHECKERED-GRID SYSTEM  —  add class="grid-section" to any light
+  section to opt in.  Use grid-tinted for slate-50 backgrounds.
+  ═══════════════════════════════════════════════════════════════════
+
+  Layers (bottom → top):
+
+  [background]  Gray grid lines, 42 px squares, animated 45° drift
+  [::before]    Blurred blue glow blobs (top-right + left-middle)
+                — filter:blur(60px) gives the frosted halo effect
+  [::after]     Blue grid lines masked to a small cursor radius
+                — only the lines change colour, no fill circle
+  [content]     z-index:2, sits above everything
+-->
+<style is:global>
+
+  /* ── Grid drift: moves one tile diagonally, loops seamlessly ── */
+  @keyframes grid-drift {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 42px 42px, 42px 42px; }
+  }
+
+  /* ── Aurora: drifts soft colour blobs via transform (GPU-only, no repaint) ── */
+  @keyframes aurora-drift {
+    0%   { transform: translate(0, 0)      scale(1);    }
+    50%  { transform: translate(4%, -3%)   scale(1.04); }
+    100% { transform: translate(-3%, 4%)   scale(0.97); }
+  }
+
+  /* ─────────── BASE SECTION ─────────── */
+  .grid-section {
+    position: relative;
+    background-color: #ffffff;
+
+    /* Only the grid lines live here — gradients moved to ::before */
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.052) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.052) 1px, transparent 1px);
+    background-size: 42px 42px;
+
+    /* ~1.67× faster than the old 20 s */
+    animation: grid-drift 6s linear infinite;
+  }
+
+  .grid-section.grid-tinted {
+    background-color: #f8fafc;
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.044) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.044) 1px, transparent 1px);
+  }
+
+  
+
+  /* ─────────── HOVER: BLUE LINES IN CURSOR RADIUS ─────────── */
+  /*
+     Identical grid pattern to the background, but drawn in blue.
+     A radial mask-image clips it to a circle around the cursor so
+     ONLY the lines within that radius change colour — no fill blob.
+     Animated with the same keyframes + duration for perfect sync.
+  */
+  .grid-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+
+    background-image:
+      linear-gradient(rgba(37, 99, 235, 0.85) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, 0.85) 1px, transparent 1px);
+    background-size: 42px 42px;
+
+    /* Must match parent animation exactly for lines to stay aligned */
+    animation: grid-drift 6s linear infinite;
+
+    /* Circular window centred on the cursor */
+    -webkit-mask-image: radial-gradient(
+      96px circle at var(--gs-x, -9999px) var(--gs-y, -9999px),
+      black 45%, transparent 80%
+    );
+    mask-image: radial-gradient(
+      96px circle at var(--gs-x, -9999px) var(--gs-y, -9999px),
+      black 45%, transparent 80%
+    );
+
+    opacity: var(--gs-show, 0);
+    transition: opacity 0.25s ease-out;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* ─────────── BLUR OVERLAY ─────────── */
+  /*
+     Covers the whole section with a soft backdrop-filter blur.
+     An inverted radial mask cuts a sharp hole at the cursor position,
+     so hovering "unblurs" the grid locally while the rest stays hazy.
+  */
+  .gs-blur-overlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    pointer-events: none;
+    z-index: 1;
+    -webkit-mask-image: radial-gradient(
+      96px circle at var(--gs-x, -9999px) var(--gs-y, -9999px),
+      transparent 45%, black 80%
+    );
+    mask-image: radial-gradient(
+      96px circle at var(--gs-x, -9999px) var(--gs-y, -9999px),
+      transparent 45%, black 80%
+    );
+  }
+
+  /* Content floats above all overlay layers */
+  .grid-section > *:not(.gs-blur-overlay) {
+    position: relative;
+    z-index: 3;
+  }
+
+  /* ─────────── SCROLL ANIMATIONS ─────────── */
+  [data-animate] {
+    opacity: 0;
+    transition: opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-animate="fade-up"]    { transform: translateY(48px); }
+  [data-animate="fade-left"]  { transform: translateX(-40px); }
+  [data-animate="fade-right"] { transform: translateX(40px); }
+  [data-animate="fade-in"]    { transform: scale(0.97); }
+  [data-animate].is-visible {
+    opacity: 1;
+    transform: none !important;
+  }
+
+  /* ─────────── SPARKLE BUTTONS ─────────── */
+  .sparkle-star {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  @keyframes sparkle-pop {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(0deg); }
+    40%  { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(90deg); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(180deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .grid-section         { animation: none; }
+    .grid-section::before { animation: none; will-change: auto; }
+    .grid-section::after  { animation: none; display: none; }
+    .gs-blur-overlay      { display: none; }
+    [data-animate] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+
+</style>
+
+<script is:inline>
+  (function () {
+    var sections = document.querySelectorAll('.grid-section');
+    var raf = null;
+
+    /* Inject blur overlay into each section */
+    for (var i = 0; i < sections.length; i++) {
+      var overlay = document.createElement('div');
+      overlay.className = 'gs-blur-overlay';
+      sections[i].insertBefore(overlay, sections[i].firstChild);
+    }
+
+    document.addEventListener('mousemove', function (e) {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () {
+        /* Suppress only when hovering directly over text/interactive elements. */
+        var overContent = !!e.target.closest('h1,h2,h3,h4,h5,h6,p,li,a,button,input,textarea,label');
+
+        for (var i = 0; i < sections.length; i++) {
+          var el = sections[i];
+          var r  = el.getBoundingClientRect();
+          if (e.clientX >= r.left && e.clientX <= r.right &&
+              e.clientY >= r.top  && e.clientY <= r.bottom) {
+            el.style.setProperty('--gs-x', (e.clientX - r.left) + 'px');
+            el.style.setProperty('--gs-y', (e.clientY - r.top)  + 'px');
+            el.style.setProperty('--gs-show', overContent ? '0' : '1');
+          }
+        }
+      });
+    });
+
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].addEventListener('mouseleave', function () {
+        this.style.setProperty('--gs-show', '0');
+        this.style.setProperty('--gs-x', '-9999px');
+        this.style.setProperty('--gs-y', '-9999px');
+      });
+    }
+  })();
+
+  /* ── SCROLL ANIMATIONS ── */
+  (function () {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var delay = parseInt(el.getAttribute('data-animate-delay') || '0', 10);
+        if (delay > 0) {
+          setTimeout(function () { el.classList.add('is-visible'); }, delay);
+        } else {
+          el.classList.add('is-visible');
+        }
+        io.unobserve(el);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    /* Auto-stagger direct [data-animate] children of .animate-stagger containers */
+    var staggerContainers = document.querySelectorAll('.animate-stagger');
+    for (var s = 0; s < staggerContainers.length; s++) {
+      var kids = staggerContainers[s].querySelectorAll(':scope > [data-animate]');
+      for (var k = 0; k < kids.length; k++) {
+        var base = parseInt(kids[k].getAttribute('data-animate-delay') || '0', 10);
+        kids[k].setAttribute('data-animate-delay', String(base + k * 150));
+      }
+    }
+
+    var animated = document.querySelectorAll('[data-animate]');
+    for (var a = 0; a < animated.length; a++) {
+      io.observe(animated[a]);
+    }
+  })();
+
+  /* ── SPARKLE BUTTONS ── */
+  (function () {
+    var colors = ['#2563eb', '#60a5fa', '#93c5fd', '#1d4ed8', '#3b82f6'];
+    var starPath = 'M9.82531 0.843845C10.0553 0.215178 10.9446 0.215178 11.1746 0.843845L11.8618 2.72026C12.4006 4.19229 12.3916 6.39157 13.5 7.5C14.6084 8.60843 16.8077 8.59935 18.2797 9.13822L20.1561 9.82534C20.7858 10.0553 20.7858 10.9447 20.1561 11.1747L18.2797 11.8618C16.8077 12.4007 14.6084 12.3916 13.5 13.5C12.3916 14.6084 12.4006 16.8077 11.8618 18.2798L11.1746 20.1562C10.9446 20.7858 10.0553 20.7858 9.82531 20.1562L9.13819 18.2798C8.59932 16.8077 8.60843 14.6084 7.5 13.5C6.39157 12.3916 4.19225 12.4007 2.72023 11.8618L0.843814 11.1747C0.215148 10.9447 0.215148 10.0553 0.843814 9.82534L2.72023 9.13822C4.19225 8.59935 6.39157 8.60843 7.5 7.5C8.60843 6.39157 8.59932 4.19229 9.13819 2.72026L9.82531 0.843845Z';
+
+    function createStar(x, y) {
+      var color = colors[Math.floor(Math.random() * colors.length)];
+      var size = 10 + Math.random() * 10;
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 21 21');
+      svg.setAttribute('width', String(size));
+      svg.setAttribute('height', String(size));
+      svg.setAttribute('class', 'sparkle-star');
+      svg.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;left:' + x + 'px;top:' + y + 'px;animation:sparkle-pop 0.75s ease-out forwards';
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', starPath);
+      path.setAttribute('fill', color);
+      svg.appendChild(path);
+      document.body.appendChild(svg);
+      setTimeout(function () {
+        if (svg.parentNode) svg.parentNode.removeChild(svg);
+      }, 800);
+    }
+
+    var sparkleButtons = document.querySelectorAll('.btn-sparkle');
+    for (var b = 0; b < sparkleButtons.length; b++) {
+      (function (btn) {
+        var iv = null;
+        btn.addEventListener('mouseenter', function () {
+          iv = setInterval(function () {
+            var r = btn.getBoundingClientRect();
+            createStar(r.left + Math.random() * r.width, r.top + Math.random() * r.height);
+          }, 75);
+        });
+        btn.addEventListener('mouseleave', function () { clearInterval(iv); iv = null; });
+      })(sparkleButtons[b]);
+    }
+  })();
+</script>

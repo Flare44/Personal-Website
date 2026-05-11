@@ -1,0 +1,22 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Nav from "@/components/Nav.astro";
+import Hero from "@/components/Hero.astro";
+import AISection from "@/components/AISection.astro";
+import Experience from "@/components/Experience.astro";
+import Projects from "@/components/Projects.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout>
+  <Nav />
+  <main>
+    <div class="grid-section">
+      <Hero />
+      <AISection />
+      <Experience />
+      <Projects />
+    </div>
+  </main>
+  <Footer />
+</Layout>

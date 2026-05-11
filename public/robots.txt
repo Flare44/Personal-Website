@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moritzgilges.dev/sitemap-index.xml
