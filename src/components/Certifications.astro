@@ -1,0 +1,92 @@
+---
+const certs = [
+  {
+    name: "Claude 101",
+    issuer: "Anthropic",
+    logo: "/logos/anthropic.png",
+    initials: "An",
+  },
+  {
+    name: "Building with Claude",
+    issuer: "Anthropic",
+    logo: "/logos/anthropic.png",
+    initials: "An",
+  },
+  {
+    name: "Claude AI Fluency",
+    issuer: "Anthropic",
+    logo: "/logos/anthropic.png",
+    initials: "An",
+  },
+  {
+    name: "Generative AI: RAG & Agentic AI",
+    issuer: "IBM",
+    logo: "/logos/ibm.png",
+    initials: "IBM",
+  },
+];
+---
+
+<section id="certifications" class="py-36 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 mb-14 text-center" data-no-grid data-animate="fade-up">
+    <span class="inline-block text-xs font-semibold tracking-widest text-blue-600 uppercase mb-3">
+      Nachweise
+    </span>
+    <h2 class="text-4xl md:text-6xl font-bold text-gray-900">Zertifikate</h2>
+  </div>
+
+  <!-- Marquee wrapper — full bleed so cards slide off both edges -->
+  <div class="relative w-full overflow-hidden">
+    <!-- Fade edges -->
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-white to-transparent" />
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-white to-transparent" />
+
+    <div class="marquee-track flex gap-5 w-max">
+      {[...certs, ...certs, ...certs].map((cert) => (
+        <div class="flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-5 py-4
+                    hover:border-blue-200 hover:shadow-[0_8px_24px_-8px_rgba(37,99,235,0.12)]
+                    transition-all duration-200 cursor-default select-none min-w-max">
+          <!-- Logo tile -->
+          <div class="relative flex-shrink-0 w-10 h-10 rounded-lg border border-gray-100 bg-gray-50
+                      overflow-hidden flex items-center justify-center">
+            <span class="text-[10px] font-bold text-gray-400">{cert.initials}</span>
+            <img
+              src={cert.logo}
+              alt={cert.issuer}
+              class="absolute inset-0 w-full h-full object-contain p-1 bg-white"
+              onerror="this.style.display='none'"
+            />
+          </div>
+          <!-- Text -->
+          <div>
+            <p class="text-sm font-semibold text-gray-900 leading-snug">{cert.name}</p>
+            <p class="text-xs text-gray-400 mt-0.5">{cert.issuer}</p>
+          </div>
+          <!-- Badge -->
+          <svg class="w-4 h-4 text-blue-500 flex-shrink-0 ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2l2.09 6.26L20 9.27l-5 4.87L16.18 21 12 17.77 7.82 21 9 14.14 4 9.27l5.91-.91z"/>
+          </svg>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-100% / 3)); }
+  }
+
+  .marquee-track {
+    animation: marquee 28s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+</style>

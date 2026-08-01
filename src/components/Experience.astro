@@ -1,43 +1,13 @@
 ---
-const workExperience = [
-  {
-    role: "Software Engineer",
-    company: "fulfillmenttools",
-    location: "Köln",
-    period: "Jul 2025 — heute",
-    description:
-      "Entwicklung mit Node.js und GraphQL nach modernen Software-Engineering-Praktiken. Schreiben automatisierter Tests und Unterstützung der CI/CD-Pipelines.",
-    tags: ["Node.js", "GraphQL", "CI/CD", "Testing"],
-    current: true,
-  },
-  {
-    role: "Software Engineer",
-    company: "adesso SE",
-    location: "Düsseldorf",
-    period: "Apr 2023 — Dez 2023",
-    description:
-      "Entwicklung von CMS-basierten Websites und Plugins mit Java. Migration von Projekten von Maven zu Gradle sowie Aufbau von CI/CD-Pipelines. Durchführung interner technischer Schulungen.",
-    tags: ["Java", "Maven", "Gradle", "CI/CD", "CMS"],
-    current: false,
-  },
-  {
-    role: "IT-Support Assistent",
-    company: "Colegio Alemán de Quito",
-    location: "Quito, Ecuador",
-    period: "Aug 2021 — Sep 2021",
-    description:
-      "Einrichtung und Konfiguration von Computern, Installation von Netzwerkdruckern und Tablets. Klassenzimmer-Support für WLAN, Audio und digitale Whiteboards.",
-    tags: ["IT Support", "Networking", "Hardware"],
-    current: false,
-  },
-];
-
 const education = [
   {
     degree: "M.Sc. Informatik",
     institution: "Rheinische Friedrich-Wilhelms-Universität Bonn",
     period: "Okt 2025 — Sep 2027",
     description: "Vertiefung in Informatik mit Schwerpunkt auf KI und fortgeschrittenen Algorithmen.",
+    logo: "/logos/uni-bonn.png",
+    initials: "UB",
+    tags: ["KI", "Algorithmen"],
     current: true,
   },
   {
@@ -45,6 +15,9 @@ const education = [
     institution: "Heinrich-Heine-Universität Düsseldorf",
     period: "Okt 2021 — Sep 2025",
     description: "Grundstudium in Software Engineering, Algorithmen und Machine Learning. Schwerpunkte: Python, ML, NLP.",
+    logo: "/logos/hhu.png",
+    initials: "HHU",
+    tags: ["Python", "ML", "NLP"],
     current: false,
   },
   {
@@ -52,105 +25,157 @@ const education = [
     institution: "Erasmus-Gymnasium Grevenbroich",
     period: "Jul 2021",
     description: "",
+    logo: "/logos/erasmus.svg",
+    initials: "EG",
+    tags: [],
+    current: false,
+  },
+];
+
+const workExperience = [
+  {
+    role: "Software Engineer",
+    company: "fulfillmenttools",
+    location: "Köln · Festanstellung",
+    period: "Jul 2025 — heute",
+    description:
+      "Entwicklung mit Node.js und GraphQL nach modernen Software-Engineering-Praktiken. Schreiben automatisierter Tests und Unterstützung der CI/CD-Pipelines.",
+    tags: ["Node.js", "GraphQL", "CI/CD", "Testing"],
+    logo: "/logos/fulfillmenttools.png",
+    initials: "FT",
+    current: true,
+  },
+  {
+    role: "Software Engineer",
+    company: "adesso SE",
+    location: "Düsseldorf · Werkstudent",
+    period: "Apr 2023 — Dez 2023",
+    description:
+      "Entwicklung von CMS-basierten Websites und Plugins mit Java. Migration von Projekten von Maven zu Gradle sowie Aufbau von CI/CD-Pipelines. Durchführung interner technischer Schulungen.",
+    tags: ["Java", "Maven", "Gradle", "CI/CD", "CMS"],
+    logo: "/logos/adesso.png",
+    initials: "ad",
+    current: false,
+  },
+  {
+    role: "IT-Support Assistent",
+    company: "Colegio Alemán de Quito",
+    location: "Quito, Ecuador · Praktikum",
+    period: "Aug 2021 — Sep 2021",
+    description:
+      "Einrichtung und Konfiguration von Computern, Installation von Netzwerkdruckern und Tablets. Klassenzimmer-Support für WLAN, Audio und digitale Whiteboards.",
+    tags: ["IT Support", "Networking", "Hardware"],
+    logo: "/logos/caq.png",
+    initials: "CA",
     current: false,
   },
 ];
 ---
 
-<section id="experience" class="py-32">
+<section id="experience" class="py-36">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="mb-14" data-no-grid data-animate="fade-up">
+    <div class="mb-14 text-center" data-no-grid data-animate="fade-up">
       <span class="inline-block text-xs font-semibold tracking-widest text-blue-600 uppercase mb-3">
         Werdegang
       </span>
-      <h2 class="text-4xl font-bold text-gray-900">Erfahrung & Ausbildung</h2>
+      <h2 class="text-4xl md:text-6xl font-bold text-gray-900">Erfahrung & Ausbildung</h2>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6">
-      <!-- Work Experience -->
-      <div data-animate="fade-left" class="bg-white rounded-2xl p-8 border border-gray-200
-                  hover:border-blue-200 hover:shadow-[0_20px_40px_-12px_rgba(37,99,235,0.08)]
-                  transition-all duration-300">
-        <h3 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-8">
-          Berufserfahrung
+    <div class="max-w-2xl mx-auto">
+
+      <!-- Education -->
+      <div data-animate="fade-up" class="mb-10">
+        <h3 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6 pb-3 border-b border-gray-100">
+          Ausbildung
         </h3>
-        <div class="space-y-8">
-          {workExperience.map((item) => (
-            <div
-              data-no-grid
-              class="group relative pl-6 border-l-2 border-gray-200
-                     hover:border-blue-300 transition-colors duration-200"
-            >
-              <span
-                class={`absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full border-2 border-white transition-transform duration-200 group-hover:scale-125
-                  ${item.current ? "bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]" : "bg-gray-400"}`}
-              />
-              <div class="flex items-start justify-between mb-1">
-                <div>
-                  <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors duration-150">
-                    {item.role}
-                  </p>
-                  <p class="text-sm text-blue-600 font-medium">{item.company}</p>
-                  <p class="text-xs text-gray-400">{item.location}</p>
-                </div>
-                <span class="text-xs text-gray-400 whitespace-nowrap ml-4 mt-0.5">
-                  {item.period}
-                </span>
+        <div>
+          {education.map((item, i) => (
+            <div data-no-grid class={`flex gap-4 py-5 ${i < education.length - 1 ? "border-b border-gray-100" : ""}`}>
+              <!-- Logo -->
+              <div class="relative flex-shrink-0 w-12 h-12 rounded-xl border border-gray-200 bg-gray-50 overflow-hidden flex items-center justify-center">
+                <span class="text-xs font-bold text-gray-400 select-none">{item.initials}</span>
+                {item.logo && (
+                  <img
+                    src={item.logo}
+                    alt={item.institution}
+                    class="absolute inset-0 w-full h-full object-contain p-1.5 bg-white"
+                    onerror="this.style.display='none'"
+                  />
+                )}
+                {item.current && (
+                  <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-blue-600 border-2 border-white shadow-[0_0_6px_rgba(37,99,235,0.5)]" />
+                )}
               </div>
-              <p class="text-sm text-gray-500 leading-relaxed mt-2 mb-3">
-                {item.description}
-              </p>
-              <div class="flex flex-wrap gap-1.5">
-                {item.tags.map((tag) => (
-                  <span class="text-xs bg-white border border-gray-200 text-gray-500 px-2 py-0.5 rounded-md
-                               group-hover:border-blue-200 group-hover:text-blue-600 transition-colors duration-150">
-                    {tag}
-                  </span>
-                ))}
+              <!-- Content -->
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p class="font-semibold text-gray-900 leading-snug">{item.degree}</p>
+                    <p class="text-sm text-blue-600 font-medium mt-0.5">{item.institution}</p>
+                  </div>
+                  <span class="text-xs text-gray-400 whitespace-nowrap mt-0.5 flex-shrink-0">{item.period}</span>
+                </div>
+                {item.description && (
+                  <p class="text-sm text-gray-500 leading-relaxed mt-2">{item.description}</p>
+                )}
+                {item.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-1.5 mt-3">
+                    {item.tags.map((tag) => (
+                      <span class="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md">{tag}</span>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- Education -->
-      <div data-animate="fade-right" data-animate-delay="100" class="bg-white rounded-2xl p-8 border border-gray-200
-                  hover:border-blue-200 hover:shadow-[0_20px_40px_-12px_rgba(37,99,235,0.08)]
-                  transition-all duration-300">
-        <h3 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-8">
-          Ausbildung
+      <!-- Work Experience -->
+      <div data-animate="fade-up" data-animate-delay="100">
+        <h3 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6 pb-3 border-b border-gray-100">
+          Berufserfahrung
         </h3>
-        <div class="space-y-8">
-          {education.map((item) => (
-            <div
-              data-no-grid
-              class="group relative pl-6 border-l-2 border-gray-200
-                     hover:border-blue-300 transition-colors duration-200"
-            >
-              <span
-                class={`absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full border-2 border-white transition-transform duration-200 group-hover:scale-125
-                  ${item.current ? "bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]" : "bg-gray-400"}`}
-              />
-              <div class="flex items-start justify-between mb-1">
-                <div>
-                  <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors duration-150">
-                    {item.degree}
-                  </p>
-                  <p class="text-sm text-blue-600 font-medium">{item.institution}</p>
-                </div>
-                <span class="text-xs text-gray-400 whitespace-nowrap ml-4 mt-0.5">
-                  {item.period}
-                </span>
+        <div>
+          {workExperience.map((item, i) => (
+            <div data-no-grid class={`flex gap-4 py-5 ${i < workExperience.length - 1 ? "border-b border-gray-100" : ""}`}>
+              <!-- Logo -->
+              <div class="relative flex-shrink-0 w-12 h-12 rounded-xl border border-gray-200 bg-gray-50 overflow-hidden flex items-center justify-center">
+                <span class="text-xs font-bold text-gray-400 select-none">{item.initials}</span>
+                {item.logo && (
+                  <img
+                    src={item.logo}
+                    alt={item.company}
+                    class="absolute inset-0 w-full h-full object-contain p-1.5 bg-white"
+                    onerror="this.style.display='none'"
+                  />
+                )}
+                {item.current && (
+                  <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-blue-600 border-2 border-white shadow-[0_0_6px_rgba(37,99,235,0.5)]" />
+                )}
               </div>
-              {item.description && (
-                <p class="text-sm text-gray-500 leading-relaxed mt-2">
-                  {item.description}
-                </p>
-              )}
+              <!-- Content -->
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p class="font-semibold text-gray-900 leading-snug">{item.role}</p>
+                    <p class="text-sm text-blue-600 font-medium mt-0.5">{item.company}</p>
+                    <p class="text-xs text-gray-400 mt-0.5">{item.location}</p>
+                  </div>
+                  <span class="text-xs text-gray-400 whitespace-nowrap mt-0.5 flex-shrink-0">{item.period}</span>
+                </div>
+                <p class="text-sm text-gray-500 leading-relaxed mt-2">{item.description}</p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  {item.tags.map((tag) => (
+                    <span class="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md">{tag}</span>
+                  ))}
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
+
     </div>
   </div>
 </section>

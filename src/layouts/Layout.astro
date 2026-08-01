@@ -49,7 +49,7 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
 
@@ -68,123 +68,14 @@ const jsonLd = {
   </body>
 </html>
 
-<!--
-  ═══════════════════════════════════════════════════════════════════
-  CHECKERED-GRID SYSTEM  —  add class="grid-section" to any light
-  section to opt in.  Use grid-tinted for slate-50 backgrounds.
-  ═══════════════════════════════════════════════════════════════════
-
-  Layers (bottom → top):
-
-  [background]  Gray grid lines, 42 px squares, animated 45° drift
-  [::before]    Blurred blue glow blobs (top-right + left-middle)
-                — filter:blur(60px) gives the frosted halo effect
-  [::after]     Blue grid lines masked to a small cursor radius
-                — only the lines change colour, no fill circle
-  [content]     z-index:2, sits above everything
--->
 <style is:global>
 
-  /* ── Grid drift: moves one tile diagonally, loops seamlessly ── */
-  @keyframes grid-drift {
-    from { background-position: 0 0, 0 0; }
-    to   { background-position: 42px 42px, 42px 42px; }
-  }
-
-  /* ── Aurora: drifts soft colour blobs via transform (GPU-only, no repaint) ── */
-  @keyframes aurora-drift {
-    0%   { transform: translate(0, 0)      scale(1);    }
-    50%  { transform: translate(4%, -3%)   scale(1.04); }
-    100% { transform: translate(-3%, 4%)   scale(0.97); }
-  }
+  html { font-size: 18px; }
 
   /* ─────────── BASE SECTION ─────────── */
   .grid-section {
     position: relative;
     background-color: #ffffff;
-
-    /* Only the grid lines live here — gradients moved to ::before */
-    background-image:
-      linear-gradient(rgba(0, 0, 0, 0.052) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.052) 1px, transparent 1px);
-    background-size: 42px 42px;
-
-    /* ~1.67× faster than the old 20 s */
-    animation: grid-drift 6s linear infinite;
-  }
-
-  .grid-section.grid-tinted {
-    background-color: #f8fafc;
-    background-image:
-      linear-gradient(rgba(0, 0, 0, 0.044) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.044) 1px, transparent 1px);
-  }
-
-  
-
-  /* ─────────── HOVER: BLUE LINES IN CURSOR RADIUS ─────────── */
-  /*
-     Identical grid pattern to the background, but drawn in blue.
-     A radial mask-image clips it to a circle around the cursor so
-     ONLY the lines within that radius change colour — no fill blob.
-     Animated with the same keyframes + duration for perfect sync.
-  */
-  .grid-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-
-    background-image:
-      linear-gradient(rgba(37, 99, 235, 0.85) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(37, 99, 235, 0.85) 1px, transparent 1px);
-    background-size: 42px 42px;
-
-    /* Must match parent animation exactly for lines to stay aligned */
-    animation: grid-drift 6s linear infinite;
-
-    /* Circular window centred on the cursor */
-    -webkit-mask-image: radial-gradient(
-      96px circle at var(--gs-x, -9999px) var(--gs-y, -9999px),
-      black 45%, transparent 80%
-    );
-    mask-image: radial-gradient(
-      96px circle at var(--gs-x, -9999px) var(--gs-y, -9999px),
-      black 45%, transparent 80%
-    );
-
-    opacity: var(--gs-show, 0);
-    transition: opacity 0.25s ease-out;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  /* ─────────── BLUR OVERLAY ─────────── */
-  /*
-     Covers the whole section with a soft backdrop-filter blur.
-     An inverted radial mask cuts a sharp hole at the cursor position,
-     so hovering "unblurs" the grid locally while the rest stays hazy.
-  */
-  .gs-blur-overlay {
-    position: absolute;
-    inset: 0;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    pointer-events: none;
-    z-index: 1;
-    -webkit-mask-image: radial-gradient(
-      96px circle at var(--gs-x, -9999px) var(--gs-y, -9999px),
-      transparent 45%, black 80%
-    );
-    mask-image: radial-gradient(
-      96px circle at var(--gs-x, -9999px) var(--gs-y, -9999px),
-      transparent 45%, black 80%
-    );
-  }
-
-  /* Content floats above all overlay layers */
-  .grid-section > *:not(.gs-blur-overlay) {
-    position: relative;
-    z-index: 3;
   }
 
   /* ─────────── SCROLL ANIMATIONS ─────────── */
@@ -215,55 +106,12 @@ const jsonLd = {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .grid-section         { animation: none; }
-    .grid-section::before { animation: none; will-change: auto; }
-    .grid-section::after  { animation: none; display: none; }
-    .gs-blur-overlay      { display: none; }
     [data-animate] { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
 
 </style>
 
 <script is:inline>
-  (function () {
-    var sections = document.querySelectorAll('.grid-section');
-    var raf = null;
-
-    /* Inject blur overlay into each section */
-    for (var i = 0; i < sections.length; i++) {
-      var overlay = document.createElement('div');
-      overlay.className = 'gs-blur-overlay';
-      sections[i].insertBefore(overlay, sections[i].firstChild);
-    }
-
-    document.addEventListener('mousemove', function (e) {
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(function () {
-        /* Suppress only when hovering directly over text/interactive elements. */
-        var overContent = !!e.target.closest('h1,h2,h3,h4,h5,h6,p,li,a,button,input,textarea,label');
-
-        for (var i = 0; i < sections.length; i++) {
-          var el = sections[i];
-          var r  = el.getBoundingClientRect();
-          if (e.clientX >= r.left && e.clientX <= r.right &&
-              e.clientY >= r.top  && e.clientY <= r.bottom) {
-            el.style.setProperty('--gs-x', (e.clientX - r.left) + 'px');
-            el.style.setProperty('--gs-y', (e.clientY - r.top)  + 'px');
-            el.style.setProperty('--gs-show', overContent ? '0' : '1');
-          }
-        }
-      });
-    });
-
-    for (var i = 0; i < sections.length; i++) {
-      sections[i].addEventListener('mouseleave', function () {
-        this.style.setProperty('--gs-show', '0');
-        this.style.setProperty('--gs-x', '-9999px');
-        this.style.setProperty('--gs-y', '-9999px');
-      });
-    }
-  })();
-
   /* ── SCROLL ANIMATIONS ── */
   (function () {
     var io = new IntersectionObserver(function (entries) {

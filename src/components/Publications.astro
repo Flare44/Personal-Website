@@ -1,0 +1,112 @@
+---
+const publications = [
+  {
+    title: "Titel der Publikation",
+    authors: "Gilges, M. et al.",
+    venue: "Konferenz / Verlag",
+    year: "2025",
+    description:
+      "Kurze Zusammenfassung der Publikation — welches Problem wird gelöst, welche Methode wurde verwendet und was sind die wichtigsten Ergebnisse.",
+    pdfLink: "#",
+    publisherLink: "#",
+    placeholder: true,
+  },
+];
+---
+
+<section id="publications" class="py-36">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-14 text-center" data-no-grid data-animate="fade-up">
+      <span class="inline-block text-xs font-semibold tracking-widest text-blue-600 uppercase mb-3">
+        Forschung
+      </span>
+      <h2 class="text-4xl md:text-6xl font-bold text-gray-900">Publikationen</h2>
+    </div>
+
+    <div class="max-w-2xl mx-auto space-y-4">
+      {publications.map((pub) => (
+        <article
+          data-no-grid
+          data-animate="fade-up"
+          class={`group relative bg-white border rounded-2xl p-6 transition-all duration-200
+            ${pub.placeholder
+              ? "border-dashed border-gray-200"
+              : "border-gray-200 hover:border-blue-200 hover:shadow-[0_16px_36px_-12px_rgba(37,99,235,0.12)]"
+            }`}
+        >
+          {pub.placeholder && (
+            <div class="absolute inset-0 rounded-2xl bg-gray-50/60 pointer-events-none" />
+          )}
+
+          <div class="relative flex items-start gap-4">
+            <!-- Icon -->
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-50 border border-blue-100
+                        flex items-center justify-center mt-0.5">
+              <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <p class={`font-semibold leading-snug ${pub.placeholder ? "text-gray-400" : "text-gray-900 group-hover:text-blue-700 transition-colors duration-150"}`}>
+                    {pub.title}
+                  </p>
+                  <p class="text-xs text-gray-400 mt-1">
+                    {pub.authors} · {pub.venue} · {pub.year}
+                  </p>
+                </div>
+              </div>
+              <p class={`text-sm leading-relaxed mt-2 ${pub.placeholder ? "text-gray-400 italic" : "text-gray-500"}`}>
+                {pub.description}
+              </p>
+
+              <!-- Links -->
+              {!pub.placeholder && (
+                <div class="flex items-center gap-3 mt-4">
+                  {pub.pdfLink && pub.pdfLink !== "#" && (
+                    <a
+                      href={pub.pdfLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 text-xs font-medium text-red-600 hover:text-red-700
+                             bg-red-50 hover:bg-red-100 border border-red-100 px-3 py-1.5 rounded-lg transition-colors duration-150"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                      </svg>
+                      PDF
+                    </a>
+                  )}
+                  {pub.publisherLink && pub.publisherLink !== "#" && (
+                    <a
+                      href={pub.publisherLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 text-xs font-medium text-blue-600 hover:text-blue-700
+                             bg-blue-50 hover:bg-blue-100 border border-blue-100 px-3 py-1.5 rounded-lg transition-colors duration-150"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      Verlag
+                    </a>
+                  )}
+                </div>
+              )}
+
+              {pub.placeholder && (
+                <p class="text-xs text-gray-300 mt-3 italic">Platzhalter — wird bald aktualisiert</p>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
