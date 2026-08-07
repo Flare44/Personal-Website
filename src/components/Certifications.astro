@@ -1,28 +1,25 @@
 ---
 const certs = [
   {
-    name: "Claude 101",
-    issuer: "Anthropic",
-    logo: "/logos/anthropic.png",
-    initials: "An",
-  },
-  {
-    name: "Building with Claude",
-    issuer: "Anthropic",
-    logo: "/logos/anthropic.png",
-    initials: "An",
-  },
-  {
-    name: "Claude AI Fluency",
-    issuer: "Anthropic",
-    logo: "/logos/anthropic.png",
-    initials: "An",
-  },
-  {
-    name: "Generative AI: RAG & Agentic AI",
+    name: "RAG and Agentic AI",
     issuer: "IBM",
+    date: "Aug 2026",
     logo: "/logos/ibm.png",
     initials: "IBM",
+  },
+  {
+    name: "Introduction to Agent Skills",
+    issuer: "Anthropic",
+    date: "Mai 2026",
+    logo: "/logos/anthropic.png",
+    initials: "An",
+  },
+  {
+    name: "Claude 101",
+    issuer: "Anthropic",
+    date: "Mai 2026",
+    logo: "/logos/anthropic.png",
+    initials: "An",
   },
 ];
 ---
@@ -60,7 +57,7 @@ const certs = [
           <!-- Text -->
           <div>
             <p class="text-sm font-semibold text-gray-900 leading-snug">{cert.name}</p>
-            <p class="text-xs text-gray-400 mt-0.5">{cert.issuer}</p>
+            <p class="text-xs text-gray-400 mt-0.5">{cert.issuer} · {cert.date}</p>
           </div>
         </div>
       ))}

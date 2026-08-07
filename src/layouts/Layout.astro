@@ -5,31 +5,37 @@ interface Props {
 }
 
 const {
-  title = "Moritz Gilges — Developer & AI Specialist",
+  title = "Moritz Gilges — Softwareentwickler & KI-Spezialist",
   description =
-    "Portfolio of Moritz Gilges. Software developer, AI enthusiast, and freelance consultant helping small businesses grow with custom websites and AI services.",
+    "Portfolio von Moritz Gilges. Softwareentwickler und Informatik-Masterstudent mit Schwerpunkt Machine Learning und NLP — als Freelancer für individuelle Websites und KI-Lösungen.",
 } = Astro.props;
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Moritz Gilges",
-  jobTitle: "Software Developer & AI Specialist",
-  email: "moritz_gilges@web.de",
+  jobTitle: "Softwareentwickler & KI-Spezialist",
+  email: "moritz-gilges@web.de",
   url: "https://moritzgilges.de",
   sameAs: ["https://www.linkedin.com/in/moritzgilges-682a99279"],
+  alumniOf: [
+    { "@type": "CollegeOrUniversity", name: "Rheinische Friedrich-Wilhelms-Universität Bonn" },
+    { "@type": "CollegeOrUniversity", name: "Heinrich-Heine-Universität Düsseldorf" },
+  ],
+  worksFor: { "@type": "Organization", name: "fulfillmenttools" },
   knowsAbout: [
-    "Software Development",
-    "Artificial Intelligence",
-    "Web Development",
+    "Softwareentwicklung",
     "Machine Learning",
-    "Business Automation",
+    "Natural Language Processing",
+    "Künstliche Intelligenz",
+    "Webentwicklung",
+    "Backend-Entwicklung",
   ],
 };
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

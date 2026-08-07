@@ -49,26 +49,29 @@ export const projects: Project[] = [
     slug: "nlp-entity-disambiguation",
     title: "Lab NLP: Disambiguating biological entities in scientific language",
     summary:
-      "In biologischen Fachtexten haben gleiche Wörter je nach Kontext ganz unterschiedliche Bedeutungen. Die manuelle Zuordnung dieser Begriffe kostet Forschende viel Zeit. Eine eigene Pipeline übernimmt das automatisch — mit Embedding-basierter Ähnlichkeitssuche in medizinischen Datenbanken, domänenspezifischen Regeln und einem lokal betriebenen LLM.",
+      "In biomedizinischen Fachtexten haben gleiche Wörter je nach Kontext ganz unterschiedliche Bedeutungen. Die manuelle Zuordnung dieser Begriffe kostet Forschende viel Zeit. Eine End-to-End-Pipeline übernimmt das automatisch — mit FAISS-Ähnlichkeitssuche über MeSH, UMLS, Wikidata und DBpedia, domänenspezifischen Filterregeln und einem lokal betriebenen, per LoRA feinjustierten LLM.",
     status: "In Arbeit",
-    tags: ["Python", "LLM", "API", "Embeddings", "RAG", "Prompting"],
-    period: "2025 — heute",
+    tags: ["Python", "LLM", "RAG", "FAISS", "LoRA", "Pydantic AI"],
+    period: "Apr 2026 — heute",
     role: "Lab-Projekt",
     context:
       "Bonn-Aachen International Center for Information Technology (b-it) · Supervisor: Frederik Labonte",
     overview: [
-      "In biologischen Fachtexten haben identische Begriffe je nach Kontext unterschiedliche Bedeutungen. Die manuelle Zuordnung dieser Begriffe zu den passenden Einträgen in Fachdatenbanken kostet Forschende viel Zeit und bremst die eigentliche wissenschaftliche Arbeit aus.",
-      "Das Projekt entwickelt eine Pipeline, die diese Zuordnung automatisiert: Kandidaten werden über Embedding-basierte Ähnlichkeitssuche in medizinischen Datenbanken gefunden, über domänenspezifische Regeln gefiltert und anschließend von einem lokal betriebenen LLM final aufgelöst.",
+      "In biomedizinischen Fachtexten haben identische Begriffe je nach Kontext unterschiedliche Bedeutungen. Die manuelle Zuordnung dieser Begriffe zu den passenden Einträgen in Fachdatenbanken kostet Forschende viel Zeit und bremst die eigentliche wissenschaftliche Arbeit aus.",
+      "Das Projekt entwickelt eine End-to-End-Pipeline, die diese Zuordnung automatisiert: Kandidaten werden über Embedding-basierte Ähnlichkeitssuche mit FAISS in mehreren biomedizinischen und allgemeinen Wissensdatenbanken gefunden, über domänenspezifische Regeln gefiltert und anschließend von einem lokal betriebenen LLM final aufgelöst.",
+      "Weil es um sensible Forschungsdaten geht, läuft das Sprachmodell bewusst on-premise über LM Studio — die Daten verlassen die eigene Infrastruktur zu keinem Zeitpunkt. Für die Domäne wurde das Modell per LoRA auf dem Universitäts-GPU-Cluster Bender feinjustiert; Pydantic AI erzwingt schema-validierte, maschinell weiterverarbeitbare Ausgaben statt freier Textantworten.",
     ],
     highlights: [
-      "Embedding-basierte Ähnlichkeitssuche über medizinische Fachdatenbanken",
-      "Domänenspezifische Regeln zur Vorfilterung der Kandidaten",
-      "Lokales LLM für die finale Disambiguierung — die Daten verlassen die eigene Infrastruktur nicht",
+      "End-to-End-Pipeline, die mehrdeutige biomedizinische Begriffe automatisch dem korrekten Datenbankeintrag zuordnet und den manuellen Annotationsaufwand deutlich reduziert",
+      "Embedding-basiertes Candidate Retrieval per FAISS über MeSH, UMLS, Wikidata und DBpedia, kombiniert mit domänenspezifischen Filterregeln",
+      "Lokal gehostetes LLM via LM Studio für die finale Disambiguierung — sensible Forschungsdaten bleiben on-premise",
+      "LoRA-Fine-Tuning auf dem GPU-Cluster Bender der Universität; strukturierte Ausgaben mit Pydantic AI für verlässliche, schema-validierte Ergebnisse",
     ],
     techStack: [
       { group: "Sprache", items: ["Python"] },
-      { group: "NLP & KI", items: ["LLM", "Embeddings", "RAG", "Prompting"] },
-      { group: "Daten", items: ["Medizinische Fachdatenbanken", "API-Anbindung"] },
+      { group: "NLP & KI", items: ["LLM", "RAG", "Embeddings", "LoRA", "LM Studio", "Pydantic AI"] },
+      { group: "Retrieval", items: ["FAISS", "MeSH", "UMLS", "Wikidata", "DBpedia"] },
+      { group: "Infrastruktur", items: ["GPU-Cluster (Bender)", "On-Premise-Hosting"] },
     ],
     links: [],
     downloads: [],
@@ -132,7 +135,7 @@ export const projects: Project[] = [
     status: "Abgeschlossen",
     tags: ["Java", "Spring Boot", "Selenium", "MongoDB", "Docker", "Multithreading"],
     period: "Apr — Jul 2025",
-    role: "Bachelorarbeit · Note-relevante Einzelarbeit",
+    role: "Bachelorarbeit · Einzelarbeit · Note 1,0",
     context:
       "Heinrich-Heine-Universität Düsseldorf · Lehrstuhl für Datenbanken und Informationssysteme · Gutachter: Prof. Dr. Stefan Conrad, Prof. Dr. Michael Leuschel",
     overview: [
