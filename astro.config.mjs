@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://moritzgilges.dev",
+  site: "https://moritzgilges.de",
   integrations: [tailwind(), sitemap()],
   output: "static",
 });
