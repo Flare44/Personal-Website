@@ -1,0 +1,281 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+import { projects } from "@/data/projects";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+
+const statusClass =
+  project.status === "Abgeschlossen"
+    ? "bg-green-50 text-green-700"
+    : project.status === "In Arbeit"
+    ? "bg-amber-50 text-amber-700"
+    : "bg-blue-50 text-blue-700";
+
+const meta = [
+  project.period && { label: "Zeitraum", value: project.period },
+  project.role && { label: "Rolle", value: project.role },
+  project.context && { label: "Kontext", value: project.context },
+].filter(Boolean) as { label: string; value: string }[];
+---
+
+<Layout title={`${project.title} — Moritz Gilges`} description={project.summary}>
+  <Nav />
+  <main>
+    <div class="grid-section">
+
+      <!-- Header -->
+      <section class="pt-40 pb-4">
+        <div class="max-w-3xl mx-auto px-6">
+          <a
+            href="/#projects"
+            class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-blue-600 transition-colors duration-150 mb-8"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Alle Projekte
+          </a>
+
+          <div data-animate="fade-up">
+            <span class={`inline-block text-xs font-semibold px-2 py-1 rounded-full mb-4 ${statusClass}`}>
+              {project.status}
+            </span>
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-5">
+              {project.title}
+            </h1>
+            <p class="text-gray-500 leading-relaxed">{project.summary}</p>
+
+            {meta.length > 0 && (
+              <dl class="flex flex-wrap gap-x-10 gap-y-4 mt-8 pt-8 border-t border-gray-100">
+                {meta.map((item) => (
+                  <div>
+                    <dt class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">
+                      {item.label}
+                    </dt>
+                    <dd class="text-sm text-gray-700">{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <!-- Overview -->
+      {project.overview.length > 0 && (
+        <section class="py-14">
+          <div class="max-w-3xl mx-auto px-6" data-animate="fade-up">
+            <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6 pb-3 border-b border-gray-100">
+              Über das Projekt
+            </h2>
+            <div class="space-y-4">
+              {project.overview.map((paragraph) => (
+                <p class="text-gray-500 leading-relaxed">{paragraph}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Highlights -->
+      {project.highlights.length > 0 && (
+        <section class="pb-14">
+          <div class="max-w-3xl mx-auto px-6" data-animate="fade-up">
+            <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6 pb-3 border-b border-gray-100">
+              Kernpunkte
+            </h2>
+            <ul class="space-y-3">
+              {project.highlights.map((highlight) => (
+                <li class="flex gap-3 text-gray-500 leading-relaxed">
+                  <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-blue-600 mt-[0.6em]" />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      <!-- Tech stack -->
+      {project.techStack.length > 0 && (
+        <section class="pb-14">
+          <div class="max-w-3xl mx-auto px-6" data-animate="fade-up">
+            <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6 pb-3 border-b border-gray-100">
+              Tech-Stack
+            </h2>
+            <div class="space-y-5">
+              {project.techStack.map((group) => (
+                <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6">
+                  <p class="text-sm text-gray-400 sm:w-40 flex-shrink-0">{group.group}</p>
+                  <div class="flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-md
+                                   hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150 cursor-default">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Video -->
+      {project.video && (
+        <section class="pb-14">
+          <div class="max-w-3xl mx-auto px-6" data-animate="fade-up">
+            <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6 pb-3 border-b border-gray-100">
+              Demo
+            </h2>
+            <figure>
+              <div class="overflow-hidden rounded-xl border border-gray-200 bg-gray-900">
+                <video
+                  src={project.video.src}
+                  poster={project.video.poster}
+                  controls
+                  preload="metadata"
+                  class="w-full h-auto block"
+                />
+              </div>
+              {project.video.caption && (
+                <figcaption class="text-xs text-gray-400 mt-2">{project.video.caption}</figcaption>
+              )}
+            </figure>
+          </div>
+        </section>
+      )}
+
+      <!-- Images -->
+      {project.images.length > 0 && (
+        <section class="pb-14">
+          <div class="max-w-3xl mx-auto px-6" data-animate="fade-up">
+            <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6 pb-3 border-b border-gray-100">
+              Einblicke
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-5">
+              {project.images.map((image) => (
+                <figure class="group">
+                  <div class="overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      loading="lazy"
+                      class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
+                    />
+                  </div>
+                  {image.caption && (
+                    <figcaption class="text-xs text-gray-400 mt-2">{image.caption}</figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Downloads -->
+      {project.downloads.length > 0 && (
+        <section class="pb-14">
+          <div class="max-w-3xl mx-auto px-6" data-animate="fade-up">
+            <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6 pb-3 border-b border-gray-100">
+              Dokumente
+            </h2>
+            <div class="space-y-3">
+              {project.downloads.map((download) => (
+                <a
+                  href={download.href}
+                  download
+                  class="group flex items-center gap-4 border border-gray-200 rounded-xl px-5 py-4
+                         hover:border-blue-200 hover:shadow-[0_8px_24px_-8px_rgba(37,99,235,0.15)]
+                         transition-all duration-200"
+                >
+                  <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg border border-gray-100 bg-gray-50 text-gray-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors duration-150">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    </svg>
+                  </span>
+                  <span class="flex-1 min-w-0">
+                    <span class="block text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-150">
+                      {download.label}
+                    </span>
+                    {download.meta && (
+                      <span class="block text-xs text-gray-400 mt-0.5">{download.meta}</span>
+                    )}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Links -->
+      {project.links.length > 0 && (
+        <section class="pb-14">
+          <div class="max-w-3xl mx-auto px-6" data-animate="fade-up">
+            <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6 pb-3 border-b border-gray-100">
+              Links
+            </h2>
+            <div class="flex flex-wrap gap-3">
+              {project.links.map((link) => (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 border border-gray-200 text-gray-600 text-sm px-4 py-2 rounded-lg
+                         hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50/60
+                         transition-all duration-150"
+                >
+                  {link.label}
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Footer CTA -->
+      <section class="pb-36 pt-6">
+        <div class="max-w-3xl mx-auto px-6" data-animate="fade-up">
+          <div class="border-t border-gray-100 pt-10 flex flex-wrap items-center justify-between gap-4">
+            <p class="text-sm text-gray-500">Fragen zu diesem Projekt?</p>
+            <div class="flex items-center gap-3">
+              <a
+                href="/#projects"
+                class="text-sm text-gray-500 hover:text-blue-600 transition-colors duration-150"
+              >
+                Alle Projekte
+              </a>
+              <a
+                href="mailto:moritz_gilges@web.de"
+                class="text-sm font-medium bg-gray-900 text-white px-4 py-2 rounded-lg
+                       hover:bg-gray-700 hover:shadow-md
+                       active:scale-[0.97] transition-all duration-200"
+              >
+                Kontakt
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>

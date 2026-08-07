@@ -1,30 +1,5 @@
 ---
-const projects = [
-  {
-    title: "Lab NLP: Disambiguating biological entities in scientific language",
-    description:
-      "In biologischen Fachtexten haben gleiche Wörter oft verschiedene Bedeutungen, je nach Kontext. Es dauert lange oft lange die richtigen Wörter den passenden Begriffen zuzuordnen, was die eigentliche Arbeit verlangsamt. Durch eine eigene Pipeline können wir dieses Problem lösen, indem wir Embedding-basierte Ähnlichkeitssuchen in medizinischen Datenbanken durchführen, domänenspezifische Regeln anwenden und ein lokales LLM einbinden. Supervisor: Frederik Labonte (b-it)",
-    tags: ["Python", "LLM", "API", "Embeddings", "RAG", "Prompting"],
-    link: "#",
-    status: "In Arbeit",
-  },
-  {
-    title: "SemEval2026 Story Similarity Task",
-    description:
-      "Kurze Beschreibung des Projekts, welches Problem es löst und welche Technologien eingesetzt wurden.",
-    tags: ["Node.js", "TypeScript", "GraphQL"],
-    link: "#",
-    status: "Live",
-  },
-  {
-    title: "Bachelorarbeit: Developing a Web-Scraper for scientific research",
-    description:
-      "Kurze Beschreibung des Projekts, welches Problem es löst und welche Technologien eingesetzt wurden. ",
-    tags: ["LLM", "RAG", "Automation"],
-    link: "#",
-    status: "Live",
-  },
-];
+import { projects } from "@/data/projects";
 ---
 
 <section id="projects" class="py-36">
@@ -41,7 +16,7 @@ const projects = [
         <article
           data-no-grid
           data-animate="fade-up"
-          class="group relative border border-gray-200 rounded-2xl p-6
+          class="group relative flex flex-col border border-gray-200 rounded-2xl p-6
                  hover:border-blue-200 hover:-translate-y-1.5
                  hover:shadow-[0_20px_40px_-12px_rgba(37,99,235,0.18)]
                  active:translate-y-0 active:scale-[0.99]
@@ -52,18 +27,16 @@ const projects = [
           <div class="relative flex items-start justify-between mb-4">
             <span
               class={`text-xs font-semibold px-2 py-1 rounded-full ${
-                project.status === "Live"
+                project.status === "Abgeschlossen"
                   ? "bg-green-50 text-green-700"
-                  : "bg-amber-50 text-amber-700"
+                  : project.status === "In Arbeit"
+                  ? "bg-amber-50 text-amber-700"
+                  : "bg-blue-50 text-blue-700"
               }`}
             >
               {project.status}
             </span>
-            <a
-              href={project.link}
-              class="text-gray-400 hover:text-blue-600 transition-colors"
-              aria-label={`Projekt ansehen: ${project.title}`}
-            >
+            <span class="text-gray-400 group-hover:text-blue-600 transition-colors">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
@@ -72,15 +45,23 @@ const projects = [
                   d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                 />
               </svg>
-            </a>
+            </span>
           </div>
+
           <h3 class="relative font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-150">
-            {project.title}
+            <a
+              href={`/projekte/${project.slug}`}
+              class="after:absolute after:inset-0 after:rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
+            >
+              {project.title}
+            </a>
           </h3>
-          <p class="relative text-sm text-gray-500 leading-relaxed mb-4">
-            {project.description}
+
+          <p class="relative text-sm text-gray-500 leading-relaxed mb-4 line-clamp-5">
+            {project.summary}
           </p>
-          <div class="relative flex flex-wrap gap-2">
+
+          <div class="relative flex flex-wrap gap-2 mt-auto">
             {project.tags.map((tag) => (
               <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-md
                            group-hover:bg-blue-50 group-hover:text-blue-700 transition-colors duration-150">
