@@ -16,7 +16,7 @@ const jsonLd = {
   name: "Moritz Gilges",
   jobTitle: "Software Developer & AI Specialist",
   email: "moritz_gilges@web.de",
-  url: "https://moritzgilges.dev",
+  url: "https://moritzgilges.de",
   sameAs: ["https://www.linkedin.com/in/moritzgilges-682a99279"],
   knowsAbout: [
     "Software Development",
@@ -39,7 +39,7 @@ const jsonLd = {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://moritzgilges.dev" />
+    <meta property="og:url" content="https://moritzgilges.de" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -157,7 +157,7 @@ const jsonLd = {
       svg.setAttribute('width', String(size));
       svg.setAttribute('height', String(size));
       svg.setAttribute('class', 'sparkle-star');
-      svg.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;left:' + x + 'px;top:' + y + 'px;animation:sparkle-pop 0.75s ease-out forwards';
+      svg.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;left:' + x + 'px;top:' + y + 'px;animation:sparkle-pop 1.4s ease-out forwards';
       var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       path.setAttribute('d', starPath);
       path.setAttribute('fill', color);
@@ -165,7 +165,7 @@ const jsonLd = {
       document.body.appendChild(svg);
       setTimeout(function () {
         if (svg.parentNode) svg.parentNode.removeChild(svg);
-      }, 800);
+      }, 1500);
     }
 
     var sparkleButtons = document.querySelectorAll('.btn-sparkle');
@@ -176,7 +176,7 @@ const jsonLd = {
           iv = setInterval(function () {
             var r = btn.getBoundingClientRect();
             createStar(r.left + Math.random() * r.width, r.top + Math.random() * r.height);
-          }, 75);
+          }, 170);
         });
         btn.addEventListener('mouseleave', function () { clearInterval(iv); iv = null; });
       })(sparkleButtons[b]);
