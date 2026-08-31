@@ -14,7 +14,7 @@ const education = [
     degree: "B.Sc. Informatik (Note 1,8)",
     institution: "Heinrich-Heine-Universität Düsseldorf",
     period: "Okt 2021 — Sep 2025",
-    description: "Grundlagen in Software Engineering, Algorithmen und Machine Learning. Bachelorarbeit (Note 1,0): „Building a Web-Scraper for Academic Research“.",
+    description: "Grundlagen in Software Engineering, Algorithmen und Machine Learning.<br />Bachelorarbeit (Note 1,0): „Building a Web-Scraper for Academic Research“.",
     logo: "/logos/hhu.png",
     initials: "HHU",
     tags: ["Software Engineering", "Data Science", "Java"],
@@ -39,8 +39,8 @@ const workExperience = [
     location: "Köln · Werkstudent",
     period: "Jul 2025 — heute",
     description:
-      "Entwicklung und Wartung von Features in der Inventory-Domäne einer mandantenfähigen SaaS-Plattform für Order Fulfillment. Umsetzung von Cron-Jobs und asynchronen Work Queues für zuverlässige Hintergrundprozesse auf sehr großen Datenmengen, Design feingranularer Berechtigungslogik sowie Erweiterung der REST- und GraphQL-APIs — abgesichert durch automatisierte Jest-Testsuites in der CI/CD-Pipeline.",
-    tags: ["TypeScript", "MongoDB", "GCP", "GraphQL", "REST", "Jest", "CI/CD"],
+      "Backend-Entwicklung direkt am Produkt — einer SaaS-Plattform für Order Fulfillment: neue Features in der Inventory-Domäne, Cron-Jobs und asynchrone Work Queues für Hintergrundprozesse auf sehr großen Datenmengen, feingranulare Berechtigungslogik sowie Erweiterung der REST- und GraphQL-APIs, abgesichert durch automatisierte Jest-Tests in der CI/CD-Pipeline. Zunehmend im KI-Bereich unterwegs: Datenanalyse als Data Scientist sowie Entwicklung von RAG-Systemen und LLM-Agenten.",
+    tags: ["TypeScript", "Python", "MongoDB", "GCP", "GraphQL", "RAG", "LLM-Agenten", "CI/CD"],
     logo: "/logos/fulfillmenttools.png",
     initials: "FT",
     current: true,
@@ -116,7 +116,7 @@ const workExperience = [
                   <span class="text-xs text-gray-400 whitespace-nowrap mt-0.5 flex-shrink-0">{item.period}</span>
                 </div>
                 {item.description && (
-                  <p class="text-sm text-gray-500 leading-relaxed mt-2">{item.description}</p>
+                  <p class="text-sm text-gray-500 leading-relaxed mt-2" set:html={item.description} />
                 )}
                 {item.tags.length > 0 && (
                   <div class="flex flex-wrap gap-1.5 mt-3">

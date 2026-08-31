@@ -84,5 +84,4 @@ Auf `/projekte/semeval-2026-story-similarity` sind zwei PDFs verlinkt, die sich 
 ## Offene Punkte
 
 - **Abitur-Eintrag** in `Experience.astro`: steht nicht im aktuellen Lebenslauf. Drinlassen oder raus? — noch ungeklärt.
-- **GitHub-Link** im Hero: im Lebenslauf verlinkt, auf der Seite fehlt das Icon (nur LinkedIn + Mail). — noch ungeklärt.
 - **Demo-Video** zur Bachelorarbeit soll noch nachgereicht werden.
