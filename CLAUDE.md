@@ -4,7 +4,7 @@ Kontext für Claude Code zu diesem Repo. Alles, was sich aus dem Code selbst abl
 
 ## Was das ist
 
-Persönliche Portfolio-Website von Moritz Gilges (Informatik-Master, Uni Bonn). Sie hat zwei Zielgruppen gleichzeitig:
+Persönliche Portfolio-Website von Moritz Gilges (M.Sc. Artificial Intelligence, Uni Bonn — seit Okt 2026, davor Informatik-Master mit Track „Intelligent Systems"). Sie hat zwei Zielgruppen gleichzeitig:
 
 1. **Recruiter / akademisches Umfeld** — Startseite (`/`) mit Werdegang, Projekten, Zertifikaten.
 2. **Firmen als Freelance-Kunden** — `/dienstleistungen` verkauft Webentwicklung und KI-Lösungen.
