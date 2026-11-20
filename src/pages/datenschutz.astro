@@ -1,0 +1,236 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout
+  title="Datenschutzerklärung — Moritz Gilges"
+  description="Informationen zur Verarbeitung personenbezogener Daten auf moritzgilges.de"
+>
+  <Nav />
+  <main class="bg-white min-h-screen">
+    <div class="max-w-3xl mx-auto px-6 pt-32 pb-24">
+
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600
+               transition-colors duration-150 mb-10 group"
+      >
+        <svg
+          class="w-4 h-4 transition-transform duration-150 group-hover:-translate-x-0.5"
+          fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 5l-7 7 7 7" />
+        </svg>
+        Zurück zur Startseite
+      </a>
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Datenschutzerklärung</h1>
+      <p class="text-sm text-gray-400 mb-12">Stand: November 2026</p>
+
+      <!-- 1. Verantwortlicher -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          1. Verantwortlicher
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed mb-4">
+          Verantwortlich für die Datenverarbeitung auf dieser Website ist:
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Moritz Gilges<br />
+          Am Windpark 64<br />
+          41515 Grevenbroich<br />
+          Deutschland<br />
+          E-Mail: <a href="mailto:moritz-gilges@web.de" class="text-blue-600 hover:underline">moritz-gilges@web.de</a><br />
+          Telefon: <a href="tel:+4901795102898" class="text-blue-600 hover:underline">0179 5102898</a>
+        </p>
+      </section>
+
+      <!-- 2. Überblick -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          2. Überblick
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Ich verarbeite personenbezogene Daten nur, soweit das für den Betrieb dieser Website und für
+          die Beantwortung Ihrer Anfragen nötig ist. Personenbezogene Daten sind alle Daten, mit denen
+          Sie persönlich identifiziert werden können, zum Beispiel Ihr Name, Ihre E-Mail-Adresse oder
+          Ihre IP-Adresse. Ich verkaufe Ihre Daten nicht und gebe sie nur an die hier genannten
+          Dienstleister weiter.
+        </p>
+      </section>
+
+      <!-- 3. Hosting -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          3. Hosting bei Vercel
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed mb-4">
+          Diese Website wird bei der Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA,
+          gehostet. Wenn Sie die Website aufrufen, erfasst Vercel automatisch technische Daten in
+          sogenannten Server-Logfiles:
+        </p>
+        <ul class="text-sm text-gray-500 leading-relaxed mb-4 list-disc pl-5 space-y-1">
+          <li>IP-Adresse</li>
+          <li>Datum und Uhrzeit des Zugriffs</li>
+          <li>aufgerufene Seite bzw. Datei</li>
+          <li>Referrer-URL (die Seite, von der Sie kommen)</li>
+          <li>verwendeter Browser und Betriebssystem</li>
+        </ul>
+        <p class="text-sm text-gray-500 leading-relaxed mb-4">
+          Diese Daten sind nötig, damit die Website sicher und stabil ausgeliefert werden kann und
+          Angriffe erkannt werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes
+          Interesse ist ein sicherer und funktionsfähiger Betrieb der Website. Ich führe diese Daten
+          nicht mit anderen Daten zusammen.
+        </p>
+        <!-- TODO prüfen: Gilt das Vercel Data Processing Addendum für den genutzten Plan? -->
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Vercel verarbeitet Daten auch in den USA. Vercel ist nach dem EU-U.S. Data Privacy Framework
+          zertifiziert, für das ein Angemessenheitsbeschluss der EU-Kommission besteht. Mit Vercel
+          besteht außerdem ein Vertrag zur Auftragsverarbeitung (Data Processing Addendum). Mehr dazu:
+          <a
+            href="https://vercel.com/legal/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:underline"
+          >
+            vercel.com/legal/privacy-policy
+          </a>
+        </p>
+      </section>
+
+      <!-- 4. Kontaktformular und E-Mail -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          4. Kontaktformular und E-Mail
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed mb-4">
+          Wenn Sie mir über das Kontaktformular oder per E-Mail schreiben, verarbeite ich Ihre Angaben,
+          um Ihre Anfrage zu beantworten. Beim Kontaktformular sind das Ihr Name, Ihre E-Mail-Adresse,
+          die gewünschte Leistung, auf Wunsch Ihr Budget und Ihre Nachricht.
+        </p>
+        <p class="text-sm text-gray-500 leading-relaxed mb-4">
+          Das Formular überträgt Ihre Eingaben nicht an einen Server dieser Website und speichert sie
+          dort auch nicht. Beim Absenden stellt Ihr Browser aus den Angaben eine fertig vorbereitete
+          E-Mail in Ihrem eigenen E-Mail-Programm zusammen, die Sie dort selbst abschicken. Es ist also
+          kein externer Formular-Dienstleister eingebunden.
+        </p>
+        <p class="text-sm text-gray-500 leading-relaxed mb-4">
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, wenn Ihre Anfrage mit einem möglichen Vertrag
+          zusammenhängt. In allen anderen Fällen ist es Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes
+          Interesse liegt darin, Anfragen zu beantworten.
+        </p>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Ich lösche Ihre Angaben, sobald Ihre Anfrage erledigt ist und keine gesetzlichen
+          Aufbewahrungspflichten entgegenstehen.
+        </p>
+      </section>
+
+      <!-- 5. Schriftarten -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          5. Schriftarten
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Die Schriftarten dieser Website sind lokal auf dem Server gespeichert und werden von dort
+          ausgeliefert. Beim Aufruf der Website wird keine Verbindung zu Servern von Google oder
+          anderen Anbietern aufgebaut.
+        </p>
+      </section>
+
+      <!-- 6. Cookies und lokale Speicherung -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          6. Cookies und lokale Speicherung
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Diese Website setzt keine Cookies und verwendet keine Analyse- oder Tracking-Tools. Es werden
+          auch keine Daten im lokalen Speicher Ihres Browsers abgelegt.
+        </p>
+      </section>
+
+      <!-- 7. Links zu anderen Websites -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          7. Links zu anderen Websites
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Auf dieser Website verlinke ich auf LinkedIn und GitHub. Das sind einfache Links. Daten werden
+          erst an diese Anbieter übertragen, wenn Sie einen Link anklicken. Ab dann gelten die
+          Datenschutzbestimmungen des jeweiligen Anbieters.
+        </p>
+      </section>
+
+      <!-- 8. SSL/TLS -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          8. SSL- bzw. TLS-Verschlüsselung
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Diese Website nutzt eine SSL- bzw. TLS-Verschlüsselung. Sie erkennen sie an „https://“ in der
+          Adresszeile Ihres Browsers. Daten, die Sie an mich übermitteln, können dadurch nicht von
+          Dritten mitgelesen werden.
+        </p>
+      </section>
+
+      <!-- 9. Ihre Rechte -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          9. Ihre Rechte
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed mb-4">
+          Sie haben jederzeit das Recht,
+        </p>
+        <ul class="text-sm text-gray-500 leading-relaxed mb-4 list-disc pl-5 space-y-1">
+          <li>Auskunft über Ihre bei mir gespeicherten Daten zu erhalten (Art. 15 DSGVO),</li>
+          <li>falsche Daten berichtigen zu lassen (Art. 16 DSGVO),</li>
+          <li>Ihre Daten löschen zu lassen (Art. 17 DSGVO),</li>
+          <li>die Verarbeitung einschränken zu lassen (Art. 18 DSGVO),</li>
+          <li>Ihre Daten in einem gängigen Format zu erhalten (Art. 20 DSGVO),</li>
+          <li>der Verarbeitung zu widersprechen, wenn sie auf Art. 6 Abs. 1 lit. f DSGVO beruht (Art. 21 DSGVO).</li>
+        </ul>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Schreiben Sie mir dazu einfach eine E-Mail an
+          <a href="mailto:moritz-gilges@web.de" class="text-blue-600 hover:underline">moritz-gilges@web.de</a>.
+        </p>
+      </section>
+
+      <!-- 10. Beschwerderecht -->
+      <section class="mb-10">
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          10. Beschwerderecht bei der Aufsichtsbehörde
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed mb-4">
+          Sie können sich bei einer Datenschutz-Aufsichtsbehörde beschweren. Für mich zuständig ist:
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen<br />
+          Kavalleriestraße 2–4<br />
+          40213 Düsseldorf<br />
+          <a
+            href="https://www.ldi.nrw.de"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:underline"
+          >
+            www.ldi.nrw.de
+          </a>
+        </p>
+      </section>
+
+      <!-- 11. Änderungen -->
+      <section>
+        <h2 class="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">
+          11. Änderungen
+        </h2>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Ich passe diese Datenschutzerklärung an, wenn sich die Website oder die Rechtslage ändert.
+          Es gilt die jeweils aktuelle Fassung auf dieser Seite.
+        </p>
+      </section>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>
